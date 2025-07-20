@@ -87,6 +87,16 @@ local SaveManager = {} do
 		return nil
 	end
 
+    function SaveManager:SetContent(key, value)
+		if not self.Options then return false end
+		local option = self.Options[key]
+		if option then
+        option:SetValue(value)
+			return true
+		end
+		return false
+	end
+
 	function SaveManager:Save(name)
 		if (not name) then
 			return false, "no config file is selected"
